@@ -8,9 +8,7 @@ const UNCHECK = "fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
 
 function addToDo( toDo, id, done, trash){
-
     if( trash ){ return }
-
     const DONE = done ? CHECK : UNCHECK;
     const LINE = done ? LINE_THROUGH: "";
 
@@ -70,5 +68,16 @@ list.addEventListener("click", function(event){
 })
 
 addToDo("drink coffee")
+
+let LIST, id;
+let data = localStorage.getItem("TODO");
+if(data){
+    LIST = JSON.parse(data);
+    loadToDo(LIST);
+    id = LIST.length;
+}else{
+    LIST = [];
+    id = 0;
+}
 
 localStorage.setItem("TODO", JSON.stringify(LIST));
